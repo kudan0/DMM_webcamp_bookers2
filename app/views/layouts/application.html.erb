@@ -18,12 +18,21 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="navbar-collapse" id="navbarNavDropdown" style>
-            <ul class="navbar-nav ml-auto">
-              <li>Home</li>
-              <li>About</li>
-              <li>sign up</li>
-              <li>login</li>
-            </ul>
+            <% if user_signed_in? %>
+              <ul class="navbar-nav ml-auto">
+                <li>home</li>
+                <li><%= link_to "Users", "/users" %></li>
+                <li>books</li>
+                <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+              </ul>
+            <% else %>
+              <ul class="navbar-nav ml-auto">
+                <li>Home</li>
+                <li>About</li>
+                <li>sign up</li>
+                <li>login</li>
+              </ul>
+            <% end %>
           </div>
         </div>
       </nav>

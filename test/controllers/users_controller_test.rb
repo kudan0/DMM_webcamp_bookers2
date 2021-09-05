@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class UsereControllerTest < ActionDispatch::IntegrationTest
+class UsersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get usere_index_url
+    get users_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get usere_show_url
+    get users_show_url
     assert_response :success
   end
 
   test "should get edit" do
-    get usere_edit_url
+    get users_edit_url
     assert_response :success
   end
 
