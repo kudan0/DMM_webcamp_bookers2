@@ -7,6 +7,6 @@ class User < ApplicationRecord
   # 画像アップ用のメゾット
   attachment :profile_image
 
-   has_many :book, dependent: :destroy
+   has_many :books, dependent: :destroy
 
 end
