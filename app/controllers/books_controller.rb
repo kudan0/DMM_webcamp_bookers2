@@ -14,14 +14,16 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
-    redirect_to '/users'
+    redirect_to books_path(@book.id)
 
   end
 
   def show
+    @user = current_user
     @book = Book.find(params[:id])
-    @book = Book.new
-    @books = Book.all
+    @booker = Book.new
+    @user = @book.user
+
   end
 
   def edit
@@ -30,10 +32,15 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_parms)
+    @book.update(book_params)
     redirect_to book_path(@book.id)
   end
 
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path
+  end
 
   private
 
@@ -43,5 +50,13 @@ class BooksController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+
+  def correct_user
+    @book = Book.find(params[:id])
+    @user = @book.user
+    if current_user != @user
+      redirect_to books_path
+    end
   end
 end
