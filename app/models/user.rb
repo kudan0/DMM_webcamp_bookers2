@@ -7,6 +7,12 @@ class User < ApplicationRecord
   # 画像アップ用のメゾット
   attachment :profile_image
 
-   has_many :books, dependent: :destroy
+  has_many :books, dependent: :destroy
+   
+  validates :name,
+    presence: true, uniqueness: true, length: { in: 2..20 }
+  
+  validates :introduction,
+    length: { maximum: 50 }
 
 end
