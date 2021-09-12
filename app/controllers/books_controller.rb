@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update]
+  before_action :current_user, only: [:edit, :update]
 
   def show
     @newbook = Book.new
